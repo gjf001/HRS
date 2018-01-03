@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.user.userrMapping">
+      <!-- 用户添加/注册 -->
+	<insert id="useradd" parameterType="com.entity.EUser">
+	      insert into eusers values(null,#{username},#{password})
+	</insert>
+	<!-- 用户登录 -->
+	<select id="userlogin" parameterType="com.entity.EUser" resultType="com.entity.EUser">
+	   select * from eusers where username=#{username} and password=#{password}
+	</select>
+	<!-- 用户修改 -->
+	<update id="userupdate" parameterType="com.entity.EUser">
+	    update eusers e set e.username=#{username},e.password=#{password} where id=#{id} 
+	</update>
+	<!-- 用户删除 -->
+	<delete id="userdelete" parameterType="int">
+	    delete from eusers where id=#{id}
+	</delete>
+	<!-- 按id查找用户 -->
+	<select id="userqueryById" parameterType="int" resultType="com.entity.EUser">
+	    select * from eusers where id=#{id}
+	</select>	
+</mapper>
